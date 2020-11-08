@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import { connect } from  'react-redux';
-import { set_data } from '../../store/actions';
+import { set_data,facebooklogin } from '../../store/actions';
 
 class Home extends React.Component {
     static getDerivedStateFromProps(props,state){
@@ -18,7 +18,8 @@ class Home extends React.Component {
         return (
             <div>
                 <h1>Home</h1>
-                <button onClick={()=>{this.props.set_data(dataUser)}}>Click me</button>
+                <button onClick={()=>this.props.facebooklogin()}>Facebook Login</button>
+        
             </div>
         );
     }
@@ -32,9 +33,10 @@ const mapStateToProps=(state)=>{
 
 }
 const mapDispatchTopProps=(dispatch)=>{
-       return {
-           set_data: (data)=>dispatch(set_data(data))
-       }
+       return ({
+           set_data: (data)=>dispatch(set_data(data)),
+           facebooklogin: ()=>dispatch(facebooklogin())
+       })
 }
 
 export default connect(mapStateToProps,mapDispatchTopProps)(Home);
