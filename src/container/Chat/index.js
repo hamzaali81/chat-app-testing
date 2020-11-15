@@ -3,17 +3,25 @@ import { connect } from 'react-redux';
 import { get_user } from '../../store/actions';
 
 class Chat extends Component {
+
+
    componentDidMount(){
        this.props.get_user()
    }
 
     render() {
         let user = this.props.current_user;
+        console.log('firebase users',this.props.user);
         return (
             <div>
                 <h1>!Welcome to {user.name}</h1>
                 <div>
                     <h4>Chat User</h4>
+                    <ul>
+                        {this.props.users.map((v,i)=>{
+                            return  v.uid !==user.uid && <li key={i}><img src={v.profile} alt="Profile Pic" width="10px" height="10px"/>{v.name}</li>
+                        })}
+                    </ul>
                 </div>
             </div>
         );
@@ -22,14 +30,15 @@ class Chat extends Component {
 
 const mapStateToProps=(state)=>{
     return {
-        current_user: state.mainReducer.current_user
+        current_user: state.mainReducer.current_user,
+        users: state.users
 
     }
 }
 
 const mapDispatchtoProps = (dispatch)=>{
     return {
-         get_user: ()=>dispatch(get_user())
+         get_user: ()=> dispatch(get_user())
     }
 }
 export default connect(mapStateToProps,mapDispatchtoProps)(Chat);

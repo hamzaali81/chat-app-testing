@@ -17,9 +17,18 @@ const mainReducer =(state = INTIAL_STATE,action)=>{
     switch(action.type){
         case 'SET_USER':{
            return ({
+            
             //    ...state,users:[...state.users,action.data],name:'hamza'
                  ...state,
                  current_user: action.payload
+        })
+        }
+        case 'SETFIREBASEUSER':{
+           return ({
+            
+            //    ...state,users:[...state.users,action.data],name:'hamza'
+                 ...state,
+                 users: [...state.users,action.payload]
         })
         }
         default:{
