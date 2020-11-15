@@ -1,4 +1,7 @@
 import firebase from '../../config/firebase';
+import history from 'history/createBrowserHistory';
+// console.log(history);
+// import { useHistory } from 'react-router-dom';
 // import firebase from 'firebase';
 // const set_data = (data)=>{
 
@@ -15,13 +18,14 @@ import firebase from '../../config/firebase';
 //       }
 // }
 
-const facebooklogin=()=>{
+const facebooklogin=(history)=>{
      console.log('hello facebook');
     return (dispatch)=>{
         var provider = new firebase.auth.FacebookAuthProvider();
 
         firebase.auth().signInWithPopup(provider)
         .then(function(result) {
+
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             var token = result.credential.accessToken;
             // The signed-in user info.
@@ -36,7 +40,12 @@ const facebooklogin=()=>{
             console.log('data extract',create_user);
            firebase.database().ref('/').child(`user/${user.uid}`).set(create_user)
           .then(()=>{
+            dispatch({
+                   type: "SET_USER",
+                   payload: create_user
+            })
             alert('user login sucessful');
+            // history.push('/chat'); 
           })
           
            // ...
@@ -56,6 +65,15 @@ const facebooklogin=()=>{
     // console.log('facebook login');
 }
 
+const get_user = ()=>{
+  return (dispatch)=>{
+       firebase.database.ref('/').child.on('child_added',(data)=>{
+          console.log('firebase data',data.val());
+       })
+  }
+}
+
 export {
-    facebooklogin
+    facebooklogin,
+    get_user
 };

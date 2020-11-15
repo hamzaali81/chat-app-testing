@@ -4,13 +4,13 @@ import { connect } from  'react-redux';
 import { facebooklogin } from '../../store/actions';
 
 class Home extends React.Component {
-    static getDerivedStateFromProps(props,state){
-        console.log('props****',props);
-        return{
+    // static getDerivedStateFromProps(props,state){
+    //     console.log('props****',props);
+    //     return{
             
-        }
+    //     }
 
-    }
+    // }
     render() {
         console.log('this.props',this.props.userData);
         // console.log('userdata',this.props.DataUSer());
@@ -18,7 +18,7 @@ class Home extends React.Component {
         return (
             <div>
                 <h1>Home</h1>
-                <button onClick={()=>this.props.facebooklogin()}>Facebook Login</button>
+                <button onClick={()=>this.props.facebooklogin(this.props.history)}>Facebook Login</button>
         
             </div>
         );
@@ -35,7 +35,7 @@ const mapStateToProps=(state)=>{
 const mapDispatchTopProps=(dispatch)=>{
        return ({
         //    set_data: (data)=>dispatch(set_data(data)),
-           facebooklogin: ()=>dispatch(facebooklogin())
+           facebooklogin: (history)=>dispatch(facebooklogin(history))
        })
 }
 
