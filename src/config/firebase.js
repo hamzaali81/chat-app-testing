@@ -5,10 +5,12 @@
 // import 'firebase/auth';
 // import 'firebase/database';
 
+//version update fix
 import firebase from 'firebase/app';
 import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
+import "firebase/database";
+// import "firebase/firestore";
+// import "firebase/storage";
 
 // // const config = { stuff };
 
@@ -18,7 +20,8 @@ import "firebase/storage";
 // const firestore = firebase.firestore();
 // const storage = firebase.storage();
 
-var firebaseConfig = {
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
   apiKey: "AIzaSyBehGcRgIWT0Dz8czDzYCA_6v09GwbVdw4",
   authDomain: "chat-app-testing-13a29.firebaseapp.com",
   databaseURL: "https://chat-app-testing-13a29.firebaseio.com",
@@ -29,7 +32,8 @@ var firebaseConfig = {
   measurementId: "G-GPH8QNTE3N"
 };
 // Initialize Firebase
-export const Firebase=firebase.initializeApp(firebaseConfig);
-export default Firebase;
+firebase.initializeApp(firebaseConfig);
+
+export default firebase;
 // export firebase.analytics();
 // export {firebase, auth, firestore, storage,Firebase};

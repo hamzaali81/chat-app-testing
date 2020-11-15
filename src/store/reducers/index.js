@@ -16,7 +16,7 @@ const mainReducer =(state = INTIAL_STATE,action)=>{
     switch(action.type){
         case 'SET_DATA':{
            return ({
-               ...state,users:[action.data],name:'hamza'
+               ...state,users:[...state.users,action.data],name:'hamza'
         })
         }
         default:{

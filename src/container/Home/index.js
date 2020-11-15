@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import { connect } from  'react-redux';
-import { set_data,facebooklogin } from '../../store/actions';
+import { facebooklogin } from '../../store/actions';
 
 class Home extends React.Component {
     static getDerivedStateFromProps(props,state){
@@ -34,7 +34,7 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchTopProps=(dispatch)=>{
        return ({
-           set_data: (data)=>dispatch(set_data(data)),
+        //    set_data: (data)=>dispatch(set_data(data)),
            facebooklogin: ()=>dispatch(facebooklogin())
        })
 }
